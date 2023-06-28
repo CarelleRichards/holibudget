@@ -1,0 +1,347 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width-device-width, initial-scale=1.0">
+    <meta name=“author” content="Carelle Mulawa-Richards">
+    <meta name=“description” content="Use our holiday budget calculator to see how much your trip will cost based on your expenses.">
+    <meta name=“keywords” content="holiday calculator, travel calculator, travel budget, holiday budget">
+    <title>holibudget | Free holiday planning budget calculator</title> <!-- Title on page and in tab -->
+    <link rel="stylesheet" href="style.css"> <!-- Stylesheet -->
+    <link rel="icon" type="image/x-icon" href="images/favicon.jpg"> <!-- Favicon -->
+    <link rel="preconnect" href="https://fonts.googleapis.com"> <!-- Google fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,500;1,200&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/fcea8451ee.js" crossorigin="anonymous"></script> <!-- Font Awsome -->
+    <script src="main.js"></script> <!-- JavaScript -->
+</head>
+
+<!-- When the body loads, a function runs to retrieve page elements for later use -->
+<body onload="setUp()">
+
+    <!-- Header area -->
+    <header>
+        <nav>
+            <!-- Entire page reloads when logo is clicked to clear inputs -->
+            <img src="images/darkLogo.png" onclick="location.reload()" alt="holibudget logo graphic"> 
+        </nav>
+    </header>
+
+    <!-- Main area -->
+    <main>
+
+        <!-- Progress bar -->
+        <ul class="stepIndicator">
+            <li class="inactive"><span>Step </span>1</li>
+            <li class="inactive"><span>Step </span>2</li>
+            <li class="inactive"><span>Step </span>3</li>
+            <li class="inactive"><span>Step </span>4</li>
+        </ul>
+
+        <!-- Tab 0 -->
+        <section class="tab">
+            <img class="hero" src="images/beachHoliday.png" 
+                alt="Graphic illustration of couple on a beach holiday"> <!-- DesignSells (2022) -->
+            <h1>Free holiday planning budget calculator</h1>
+            <p>With our user-friendly budget calculator, planning your dream holiday has never been easier. 
+                Just enter your expenses and our calculator will do the rest. Our estimates can help you 
+                make informed decisions, so you can enjoy a worry-free holiday.</p>
+        </section>
+
+        <!-- Tab 1 -->
+        <section class="tab">
+            <h2>How to use the budget calculator</h2>
+            <p>The budget calculator is easy and intuitive to use, however, there are 
+                a couple of things to note before you get started.</p>
+            <ul>
+                <li>Don't leave any fields blank.</li>
+                <li>Only enter monetary values.</li>
+                <li>Example values include 1000, 20.50, 15.5, etc.</li>
+                <li>Don't enter the dollar sign ($).</li>
+                <li>You may enter 0 if any fields don't apply to you.</li>
+            </ul>
+        </section>
+
+        <!-- Tab 2 -->
+        <section class="tab">
+            <h2>Your budget</h2>
+            <div class="input-group">
+                <label for="budget">Total starting amount</label>
+                <div class="input-wrapper">
+                    <div class="prefix">$</div>
+
+                    <!-- I considered using type=“number” here but it allows unwanted characters (e, E, - and +) 
+                         and I was unsure how to validate this. I went with type=“text” as it works with regex -->
+                    <input type="text" id="budget">
+                </div>
+                <div class="errorMessage"></div>
+            </div>
+        </section>
+
+        <!-- Tab 3: Expense 1 -->
+        <section class="tab">
+            <h2>Preparation expenses</h2>
+            <div class="input-group">
+                <label for="flights">Flights</label>
+                <div class="input-wrapper">
+                    <div class="prefix">$</div>
+                    <input type="text" id="flights">
+                </div>
+                <div class="errorMessage"></div>
+            </div>
+            <div class="input-group">
+                <label for="vaccinations">Vaccinations</label>
+                <div class="input-wrapper">
+                    <div class="prefix">$</div>
+                    <input type="text" id="vaccinations">
+                </div>
+                <div class="errorMessage"></div>
+            </div>
+            <div class="input-group">
+                <label for="insurance">Insurance, passports and visas</label>
+                <div class="input-wrapper">
+                    <div class="prefix">$</div>
+                    <input type="text" id="insurance">
+                </div>
+                <div class="errorMessage"></div>
+            </div>
+        </section>
+
+        <!-- Tab 4: Expense 2 -->
+        <section class="tab">
+            <h2>Essential expenses</h2>
+            <div class="input-group">
+                <label for="accommodation">Accommodation</label>
+                <div class="input-wrapper">
+                    <div class="prefix">$</div>
+                    <input type="text" id="accommodation">
+                </div>
+                <div class="errorMessage"></div>
+            </div>
+            <div class="input-group">
+                <label for="transport">Local transport</label>
+                <div class="input-wrapper">
+                    <div class="prefix">$</div>
+                    <input type="text" id="transport">
+                </div>
+                <div class="errorMessage"></div>
+            </div>
+            <div class="input-group">
+                <label for="food">Food and drinks</label>
+                <div class="input-wrapper">
+                    <div class="prefix">$</div>
+                    <input type="text" id="food">
+                </div>
+                <div class="errorMessage"></div>
+            </div>
+        </section>
+
+        <!-- Tab 5: Expense 3 -->
+        <section class="tab">
+            <h2>Entertainment expenses</h2>
+            <div class="input-group">
+                <label for="activities">Activities, tours and sightseeing</label>
+                <div class="input-wrapper">
+                    <div class="prefix">$</div>
+                    <input type="text" id="activities">
+                </div>
+                <div class="errorMessage"></div>
+            </div>
+            <div class="input-group">
+                <label for="shopping">Shopping, souvenirs and gifts</label>
+                <div class="input-wrapper">
+                    <div class="prefix">$</div>
+                    <input type="text" id="shopping">
+                </div>
+                <div class="errorMessage"></div>
+            </div>
+            <div class="input-group">
+                <label for="nightlife">Nightlife</label>
+                <div class="input-wrapper">
+                    <div class="prefix">$</div>
+                    <input type="text" id="nightlife">
+                </div>
+                <div class="errorMessage"></div>
+            </div>
+        </section>
+
+        <!-- Tab 6: Results -->   
+        <section class="tab">
+            <h2>Results</h2>
+
+            <!-- Average, total and net -->  
+            <div class="resultsContainer">
+                <div class="result">
+                    <img src="images/coconutDrink.png" alt="Graphic illustration of a coconut drink"> <!-- kmgdesignid (2020a) -->
+                    <dl>
+                        <dt>Average item</dt> 
+                        <dd id="average"></dd>              
+                    </dl>
+                </div>
+                <div class="result">
+                    <img src="images/moneyWallet.png" alt="Graphic illustration of money in a wallet"> <!-- kmgdesignid (2020b) -->
+                    <dl>
+                        <dt>Total expenses</dt>
+                        <dd id="total"></dd>
+                    </dl>
+                </div>
+                <div class="result">
+                    <img id="netImage" alt="Graphic illustration of a positive graph" src="images/positiveGraph.png"> <!-- kmgdesignid (2022) -->
+                    <dl>
+                        <dt>Net result</dt>
+                        <dd id="net"></dd>
+                    </dl>
+                </div>
+            </div>
+
+            <!-- Expenses breakdown -->        
+            <table>
+                <thead>
+                    <tr>
+                        <th class="col1">Expense</th>
+                        <th class="col2">Subtotal</th>
+                        <th class="col3"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="col1">Preparation</td>
+                        <td id="preparationResult" class="col2"></td>
+                        <td class="col3">
+                            <!-- Expand and minimise buttons call function to display/hide expense items -->
+                            <button type="button" class="expand scale-up" onclick="toggleItems(0)">
+                                <i class="fa-solid fa-plus"></i>
+                            </button>
+                            <button type="button" class="minimise scale-up" onclick="toggleItems(0)">
+                                <i class="fa-solid fa-minus"></i>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+                <tbody class="items">
+                    <tr>
+                        <td class="col1">Flights</td>
+                        <td id="flightsResult" class="col2"></td>
+                        <td class="col3"></td>
+                    </tr>
+                    <tr>
+                        <td class="col1">Vaccinations</td>
+                        <td id="vaccinationsResult" class="col2"></td>
+                        <td class="col3"></td>
+                    </tr>
+                    <tr>
+                        <td class="col1">Insurance, passports and visas</td>
+                        <td id="insuranceResult" class="col2"></td>
+                        <td class="col3"></td>
+                    </tr>
+                </tbody>
+                <tbody>
+                    <tr>
+                        <td class="col1">Essentials</td>
+                        <td id="essentialsResult" class="col2"></td>
+                        <td class="col3">
+                            <!-- Expand and minimise buttons call function to display/hide expense items -->
+                            <button type="button" class="expand scale-up" onclick="toggleItems(1)">
+                                <i class="fa-solid fa-plus"></i>
+                            </button>
+                            <button type="button" class="minimise scale-up" onclick="toggleItems(1)">
+                                <i class="fa-solid fa-minus"></i>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+                <tbody class="items">
+                    <tr>
+                        <td class="col1">Accommodation</td>
+                        <td id="accommodationResult" class="col2"></td>
+                        <td class="col3"></td>
+                    </tr>
+                    <tr>
+                        <td class="col1">Local transport</td>
+                        <td id="transportResult" class="col2"></td>
+                        <td class="col3"></td>
+                    </tr>
+                    <tr>
+                        <td class="col1">Food and drinks</td>
+                        <td id="foodResult" class="col2"></td>
+                        <td class="col3"></td>
+                    </tr>
+                </tbody>
+                <tbody>
+                    <tr>
+                        <td class="col1">Entertainment</td>
+                        <td id="entertainmentResult" class="col2"></td>
+                        <td class="col3">
+                            <!-- Expand and minimise buttons call function to display/hide expense items -->
+                            <button type="button" class="expand scale-up" onclick="toggleItems(2)">
+                                <i class="fa-solid fa-plus"></i>
+                            </button>
+                            <button type="button" class="minimise scale-up" onclick="toggleItems(2)">
+                                <i class="fa-solid fa-minus"></i>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+                <tbody class="items">
+                    <tr>
+                        <td class="col1">Activities, tours and sightseeing</td>
+                        <td id="activitiesResult" class="col2"></td>
+                        <td class="col3"></td>
+                    </tr>
+                    <tr>
+                        <td class="col1">Shopping, souvenirs and gifts</td>
+                        <td id="shoppingResult" class="col2"></td>
+                        <td class="col3"></td>
+                    </tr>
+                    <tr>
+                        <td class="col1">Nightlife</td>
+                        <td id="nightlifeResult" class="col2"></td>
+                        <td class="col3"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Buttons -->  
+        <div class="buttons">
+            
+            <!-- Call function to decrement tab by -1 when previous button is clicked -->
+            <button type="button" id="previousButton" onclick="nextPrevious(-1)" class="block-button">Previous</button>
+
+            <!-- Call function to increment tab by +1 when next button is clicked -->
+            <button type="button" id="nextButton" onclick="nextPrevious(1)" class="block-button">Begin</button>
+
+            <!-- Entire page reloads when reset button is clicked to clear inputs -->
+            <button type="button" id="resetButton" onclick="location.reload()" class="block-button">Reset</button>
+        </div>
+    </main>
+
+    <!-- Footer area -->
+    <footer>
+        <p>This website has been created as part of an assignment in an approved course of study for Curtin University 
+            and contains copyright material not created by the author. All copyright material used remains copyright 
+            of the respective owners and has been used here pursuant to Section 40 of the Copyright Act 1968 
+            (Commonwealth of Australia). No part of this work may be reproduced without consent of the original 
+            copyright owners. See code comments for references.
+        </p>
+    </footer>
+</body>
+<!-- 
+    References (index.html and main.js)
+
+    DesignSells. 2022. “Travel Blue Concept with People Scene”. Envato Elements. Accessed 11 June 2023. 
+    https://elements.envato.com/travel-blue-concept-with-people-scene-TMSKKK3.
+
+    kmgdesignid. 2020a. “20 Holiday Icons Set – Flat”. Envato Elements. Accessed 11 June 2023. 
+    https://elements.envato.com/20-holiday-icons-set-flat-PVEKA8W.
+
+    kmgdesignid. 2020b. “40 Bank & Finance Icons Set - Flat”. Envato Elements. Accessed 11 June 2023. 
+    https://elements.envato.com/40-bank-finance-icons-set-flat-BPZBK94.
+
+    kmgdesignid. 2022. “60 Business Icons Set”. Envato Elements. Accessed 11 June 2023.
+    https://elements.envato.com/60-business-icons-set-JJQSLSD.
+
+    STechies. 2022. “JavaScript Round to two Decimal Places”. STechies. Accessed 11 June 2023. 
+    https://www.stechies.com/javascript-round-two-decimal-places/.
+-->
+</html>
