@@ -5,4 +5,4 @@
 - Uses HTML, CSS and JavaScript.
 - Coded from scratch using no frameworks. 
 
-➡️ Click to see the website live
+➡️ [Click to see the website live](https://carellerichards.github.io/holibudget/)
